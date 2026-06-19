@@ -19,6 +19,9 @@ Copy upstream app frontend source at build-time, then overwrite only targeted fi
 
 ```json
 {
+  "devDependencies": {
+    "fs-extra": "^11.2.0"
+  },
   "scripts": {
     "prebuild": "node ./custom-build.js",
     "build": "yarn prebuild && vite build --base=/assets/my_app/frontend/"

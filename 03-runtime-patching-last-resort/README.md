@@ -25,8 +25,9 @@ app_include_js = ["/assets/my_app/js/runtime_patch.js"]
 `public/js/runtime_patch.js`
 
 ```js
-// Example targets CRM-like Desk DOM in Frappe v16 generation
-// Validate selectors after every app/framework upgrade.
+// Example targets CRM-like Desk DOM from Frappe/CRM v16-era markup.
+// Selectors below are implementation details and can break on upstream updates.
+// Re-check these selectors whenever you upgrade Frappe/CRM major/minor versions.
 function applyPatch() {
   const sidebar = document.querySelector('[data-component="sidebar"], .layout-side-section')
   if (!sidebar || sidebar.querySelector('[data-my-app-link="1"]')) return

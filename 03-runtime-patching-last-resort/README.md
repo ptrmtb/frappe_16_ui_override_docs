@@ -25,7 +25,8 @@ app_include_js = ["/assets/my_app/js/runtime_patch.js"]
 `public/js/runtime_patch.js`
 
 ```js
-// Example: add fallback button into CRM sidebar container when present
+// Example targets CRM-like Desk DOM in Frappe v16 generation
+// Validate selectors after every app/framework upgrade.
 function applyPatch() {
   const sidebar = document.querySelector('[data-component="sidebar"], .layout-side-section')
   if (!sidebar || sidebar.querySelector('[data-my-app-link="1"]')) return
@@ -40,8 +41,19 @@ function applyPatch() {
   sidebar.appendChild(a)
 }
 
-const observer = new MutationObserver(() => applyPatch())
-observer.observe(document.body, { childList: true, subtree: true })
+let scheduled = false
+const runPatch = () => {
+  if (scheduled) return
+  scheduled = true
+  requestAnimationFrame(() => {
+    applyPatch()
+    scheduled = false
+  })
+}
+
+const root = document.querySelector('#body, .desk-container') || document.body
+const observer = new MutationObserver(() => runPatch())
+observer.observe(root, { childList: true, subtree: true })
 applyPatch()
 ```
 

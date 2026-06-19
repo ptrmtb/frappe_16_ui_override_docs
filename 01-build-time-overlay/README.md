@@ -37,11 +37,20 @@ const targetFrontend = path.resolve(__dirname, '../../crm/frontend/src')
 const localSrc = path.resolve(__dirname, './src')
 const overrides = path.resolve(__dirname, './src_override')
 
-fs.emptyDirSync(localSrc)
-fs.copySync(targetFrontend, localSrc)
-fs.copySync(overrides, localSrc) // only changed files in src_override
+try {
+  if (!fs.existsSync(targetFrontend)) {
+    throw new Error(`Target frontend not found: ${targetFrontend}`)
+  }
 
-console.log('Overlay complete')
+  fs.emptyDirSync(localSrc)
+  fs.copySync(targetFrontend, localSrc)
+  fs.copySync(overrides, localSrc) // only changed files in src_override
+
+  console.log('Overlay complete')
+} catch (error) {
+  console.error('Overlay failed:', error.message)
+  process.exit(1)
+}
 ```
 
 ### 3) Folder layout

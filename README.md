@@ -11,7 +11,7 @@ The old method (copy app `frontend/src` + overwrite selected files during build)
 ## Recommendation Summary
 
 | Pattern | Use level | Best for |
-|---|---|---|
+| --- | --- | --- |
 | `02-extension-shell-composition` | **Recommended first** | New pages/features with minimal conflict risk |
 | `01-build-time-overlay` | **Recommended with guardrails** | Precise component/view overrides |
 | `04-fork-sync-strategy` | **Recommended for heavy divergence** | Deep product-level UI rewrites |

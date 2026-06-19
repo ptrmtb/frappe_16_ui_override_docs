@@ -38,10 +38,12 @@ frappe.pages['video'].on_page_load = function (wrapper) {
     single_column: true,
   })
 
-  const html = `<iframe width="100%" height="520" src="https://www.youtube.com/embed/OKrGJa2NnIs" title="Video" loading="lazy" sandbox="allow-scripts allow-presentation" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+  const html = `<iframe width="100%" height="520" src="https://www.youtube.com/embed/OKrGJa2NnIs" title="Video" loading="lazy" sandbox="allow-presentation" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
   $(page.body).html(html)
 }
 ```
+
+Use stricter sandbox rules for untrusted sources. Relax only if your embed provider requires it and is explicitly trusted.
 
 ### 2) Link it in Workspace (or role-based shortcut)
 

@@ -33,6 +33,7 @@ function applyPatch() {
   if (!sidebar || sidebar.querySelector('[data-my-app-link="1"]')) return
 
   const a = document.createElement('a')
+  // Keep href static/internal. If you make this dynamic, validate against an allowlist.
   a.href = '/app/video'
   a.innerText = 'Video'
   a.setAttribute('data-my-app-link', '1')

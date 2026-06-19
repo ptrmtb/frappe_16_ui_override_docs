@@ -20,7 +20,7 @@ Copy upstream app frontend source at build-time, then overwrite only targeted fi
 ```json
 {
   "devDependencies": {
-    "fs-extra": "^11.2.0"
+    "fs-extra": "11.2.0"
   },
   "scripts": {
     "prebuild": "node ./custom-build.js",
